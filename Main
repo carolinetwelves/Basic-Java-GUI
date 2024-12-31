@@ -1,0 +1,71 @@
+//click up and down
+package importPhotoFromUser;
+
+import java.awt.BorderLayout;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class GUI implements ActionListener{
+	
+	int count = 0;
+	private JLabel label;
+	private JButton button1;
+	private JButton button2;
+	private JFrame frame;
+	private JPanel panel;
+	
+	public GUI() 
+	{
+		frame = new JFrame();
+		
+		button1 = new JButton("up click");
+		button1.addActionListener(this);
+		
+		button2 = new JButton("down click");
+		button2.addActionListener(this);
+		
+		label = new JLabel("Number of clicks: 0");
+		
+		panel = new JPanel();
+		//makes window bigger/smaller
+		panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+		panel.setLayout(new GridLayout(0, 1)); //(y, x) length
+		panel.add(button1);//adds already created button
+		panel.add(label);//adds already created label
+		panel.add(button2);
+		
+		frame.add(panel, BorderLayout.CENTER);//makes white box of window
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("My GUI"); //title in green on top
+		frame.pack();//makes white box on window
+		frame.setVisible(true);//makes window appear
+	}
+
+
+	public void actionPerformed(ActionEvent whichButton)
+	{
+		
+		
+		if (whichButton.getSource() == button1)
+		{
+			count++;
+			label.setText("Number of clicks: " + count);
+		}
+		
+		else if (whichButton.getSource() == button2)
+		{
+			count--;
+			label.setText("Number of clicks: " + count);
+		}
+		
+	}
+
+}
